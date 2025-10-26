@@ -1,17 +1,17 @@
-[project]
+[tool.poetry]
 name = "core-studies"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Brenno"}
-]
+description = "Algebra Analyser API using Clean Architecture"
+authors = ["Brenno <brennohdev@gmail.com>"] # Replace with your email if desired
 readme = "README.md"
-requires-python = ">=3.14"
-dependencies = [
-    "pandas (>=2.3.3,<3.0.0)"
-]
+packages = [{include = "core_studies", from = "src"}]
 
+[tool.poetry.dependencies]
+python = ">=3.14"
+fastapi = ">=0.120.0,<0.121.0"
+uvicorn = ">=0.38.0,<0.39.0"
+# pandas = ">=2.3.3,<3.0.0" 
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=1.0.0"] # More standard requirement
 build-backend = "poetry.core.masonry.api"

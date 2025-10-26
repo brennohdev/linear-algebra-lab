@@ -1,7 +1,8 @@
 from typing import TypeVar, Generic, Type
 
 from ..ports.Operations import IAdditionPort, IScalarMultPort
-from ..ports.Provider import IZeroElementProviderPort, IAdditiveInverseProviderPort
+from ..ports.Provider import IElementProviderPort, IZeroElementProviderPort, IAdditiveInverseProviderPort
+from ..ports.Validator import IElementValidatorPort
 from .Element import AlgebraicElement
 
 ET = TypeVar('ET', bound=AlgebraicElement)
@@ -25,8 +26,10 @@ class VectorSpace(Generic[ET]):
         element_type: Type[ET],
         addition_strategy: IAdditionPort,
         scalar_mult_strategy: IScalarMultPort,
-        zero_element_provider: IZeroElementProviderPort,
-        add_inverse_provider: IAdditiveInverseProviderPort
+        zero_element_provider: IZeroElementProviderPort[ET],
+        add_inverse_provider: IAdditiveInverseProviderPort[ET],
+        element_provider: IElementProviderPort[ET],
+        validator: IElementValidatorPort[ET]
     ):
         """
         Constructs the Vector Space by injecting its dependencies
@@ -37,6 +40,8 @@ class VectorSpace(Generic[ET]):
         self.scalar_multiplication = scalar_mult_strategy
         self.zero_element_provider = zero_element_provider
         self.additive_inverse_provider = add_inverse_provider
+        self.element_provider = element_provider
+        self.validator = validator
 
     @property
     def element_type(self) -> Type[ET]:

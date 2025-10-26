@@ -1,30 +1,39 @@
 from abc import ABC, abstractmethod
-
+from typing import TypeVar, Generic, List
 from ..entities.Element import AlgebraicElement
+from .Operations import Scalar
+
+ET = TypeVar('ET', bound=AlgebraicElement)
 
 
-class IZeroElementProviderPort(ABC):
+class IZeroElementProviderPort(Generic[ET], ABC):
     """
-    Port (Interface) for a Strategy that provides
-    the neutral (zero) element of the set.
+    Interface for a strategy that provides the neutral (zero) element of the set.
     """
-
     @abstractmethod
-    def get(self) -> AlgebraicElement:
-        """Returns the additive identity element."""
+    def get(self) -> ET:
         ...
 
 
-class IAdditiveInverseProviderPort(ABC):
+class IAdditiveInverseProviderPort(Generic[ET], ABC):
     """
-    Port (Interface) for a Strategy that provides
-    the additive inverse of a given element.
+    Interface for a strategy that provides the additive inverse of a given element.
     """
+    @abstractmethod
+    def get_inverse_of(self, element: ET) -> ET:
+        ...
+
+
+class IElementProviderPort(Generic[ET], ABC):
+    """
+    Interface for a strategy that provides sample elements and scalars for axiom tests.
+    """
+    @abstractmethod
+    def get_elements(self, count: int) -> List[ET]:
+        """Return a list of 'count' sample elements."""
+        ...
 
     @abstractmethod
-    def get_inverse_of(self, element: AlgebraicElement) -> AlgebraicElement:
-        """
-        Receives an element and returns its additive inverse.
-        E.g., for v returns -v
-        """
+    def get_scalars(self, count: int) -> List[Scalar]:
+        """Return a list of 'count' sample scalars."""
         ...

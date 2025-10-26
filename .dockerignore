@@ -1,0 +1,22 @@
+# Git files
+.git
+.gitignore
+
+# Poetry / Virtual environment
+.venv
+poetry.lock  # We'll copy this explicitly in the Dockerfile
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE / OS specific files
+.vscode/
+.idea/
+*.DS_Store
+
+# Other potentially sensitive or large files
+*.env
+docs/
