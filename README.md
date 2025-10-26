@@ -49,7 +49,6 @@ Clean Architecture with Ports & Adapters. Core ideas:
 - Interface: FastAPI app exposing endpoints.
 - Containers: composition root instantiating and wiring dependencies.
 
-Mermaid diagram (GitHub supports mermaid in READMEs):
 
 ```mermaid
 flowchart TB
@@ -84,8 +83,8 @@ Docker (recommended)
 1. Ensure Docker Desktop is installed.
 2. Clone and run:
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-name>
+   git clone git@github.com:brennohdev/linear-algebra-lab.git
+   cd core_studies
    docker-compose up --build
    ```
 3. API: http://127.0.0.1:8000
@@ -96,8 +95,8 @@ Local (Poetry)
 1. Python 3.14+ and Poetry installed.
 2. Clone and install:
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-name>
+   git clone git@github.com:brennohdev/linear-algebra-lab.git
+   cd core_studies
    poetry install
    poetry shell
    uvicorn src.core_studies.interface.api.main:app --reload
